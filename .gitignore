@@ -14,3 +14,9 @@ node_modules
 
 # .DS_Store is only for Mac users
 **/.DS_Store
+
+# README.md is for project documentation
+README.md
+
+# pnpm-lock.yaml is for package management and should not be shared
+pnpm-lock.yaml
