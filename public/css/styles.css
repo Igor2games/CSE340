@@ -200,6 +200,23 @@ footer {
   color: var(--muted-ink);
 }
 
+footer a {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.video-page {
+  margin-top: 0.8rem;
+}
+
+.hosted-video {
+  width: min(100%, 56rem);
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+  background: #000;
+}
+
 a:focus-visible,
 button:focus-visible {
   outline: 3px solid #09425b;

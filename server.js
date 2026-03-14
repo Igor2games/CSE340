@@ -27,6 +27,11 @@ app.get("/", (req, res) => {
   res.render("index", { title: "Home" })
 })
 
+// Database video route
+app.get("/database", (req, res) => {
+  res.render("database", { title: "Database Video" })
+})
+
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
