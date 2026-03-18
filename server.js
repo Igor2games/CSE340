@@ -30,11 +30,6 @@ app.get("/", baseController.buildHome)
 // Inventory routes
 app.use("/inv", inventoryRoute)
 
-// Database video route
-app.get("/database", (req, res) => {
-  res.render("database", { title: "Database Video" })
-})
-
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
