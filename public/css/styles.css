@@ -315,6 +315,58 @@ footer a {
   margin: 1.2rem 0;
 }
 
+.vehicle-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 0.9rem;
+}
+
+.vehicle-detail__media {
+  border: 1px solid var(--line);
+  background: #f3f8fb;
+}
+
+.vehicle-detail__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.vehicle-detail__content {
+  border: 1px solid var(--line);
+  background: #f9fcfe;
+  padding: 1rem;
+}
+
+.vehicle-detail__title {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.vehicle-detail__price {
+  font-size: 1.35rem;
+  color: var(--accent);
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+}
+
+.vehicle-detail__spec,
+.vehicle-detail__description {
+  margin: 0 0 0.6rem;
+  color: var(--ink);
+}
+
+.error-view {
+  border: 1px solid var(--line);
+  background: #fff5f4;
+  padding: 1rem;
+}
+
+.error-message {
+  font-size: 1.05rem;
+}
+
 a:focus-visible,
 button:focus-visible {
   outline: 3px solid #09425b;
@@ -363,5 +415,10 @@ button:focus-visible {
 
   #inv-display {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vehicle-detail {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: start;
   }
 }
