@@ -367,6 +367,123 @@ footer a {
   font-size: 1.05rem;
 }
 
+.auth-view {
+  width: min(100%, 34rem);
+  margin: 0 auto;
+}
+
+.auth-card {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #ffffff 0%, #f4f9fc 100%);
+  border-radius: 0.5rem;
+  padding: 1.1rem;
+  box-shadow: 0 10px 22px rgba(18, 32, 46, 0.08);
+}
+
+.auth-form {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.form-row {
+  display: grid;
+  gap: 0.38rem;
+}
+
+.form-row label {
+  font-weight: 700;
+  color: var(--muted-ink);
+}
+
+.form-row input {
+  width: 100%;
+  border: 1px solid #7ea2b7;
+  border-radius: 0.35rem;
+  padding: 0.65rem 0.72rem;
+  font: inherit;
+  color: var(--ink);
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-row input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(15, 109, 148, 0.18);
+  outline: none;
+}
+
+.auth-submit {
+  border: 0;
+  border-radius: 0.35rem;
+  padding: 0.72rem 0.95rem;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.auth-submit:hover {
+  background: #0c5a7a;
+  transform: translateY(-1px);
+}
+
+.auth-alt-action {
+  margin: 1rem 0 0;
+  color: var(--muted-ink);
+}
+
+.auth-alt-action a {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+#messages {
+  margin: 0 0 1rem;
+}
+
+#messages ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.35rem;
+  border: 1px solid #c4d8e3;
+  background: #f2f8fb;
+}
+
+#messages li + li {
+  margin-top: 0.35rem;
+}
+
+#messages .notice,
+#messages .info,
+#messages .success,
+#messages .warning,
+#messages .error {
+  list-style: none;
+}
+
+#messages .notice,
+#messages .info {
+  border-color: #96b9cb;
+  background: #eaf5fb;
+  color: #123d52;
+}
+
+#messages .success {
+  border-color: #9ec9b2;
+  background: #e8f6ee;
+  color: #1f5a3d;
+}
+
+#messages .warning,
+#messages .error {
+  border-color: #d8b2a5;
+  background: #fff0eb;
+  color: #7a2d13;
+}
+
 a:focus-visible,
 button:focus-visible {
   outline: 3px solid #09425b;
@@ -420,5 +537,9 @@ button:focus-visible {
   .vehicle-detail {
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     align-items: start;
+  }
+
+  .auth-card {
+    padding: 1.25rem 1.35rem;
   }
 }

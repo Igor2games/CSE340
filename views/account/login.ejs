@@ -1,0 +1,38 @@
+<section class="auth-view" aria-labelledby="login-title">
+	<h1 id="login-title"><%= title %></h1>
+
+	<%- messages() %>
+
+	<div class="auth-card">
+		<form class="auth-form" action="/account/login" method="post">
+			<div class="form-row">
+				<label for="account_email">Email Address</label>
+				<input
+					type="email"
+					id="account_email"
+					name="account_email"
+					autocomplete="email"
+					required
+				>
+			</div>
+
+			<div class="form-row">
+				<label for="account_password">Password</label>
+				<input
+					type="password"
+					id="account_password"
+					name="account_password"
+					autocomplete="current-password"
+					required
+				>
+			</div>
+
+			<button class="auth-submit" type="submit">Sign In</button>
+		</form>
+
+		<p class="auth-alt-action">
+			New to CSE Motors?
+			<a href="/account/register" title="Create a new account">Create an account</a>
+		</p>
+	</div>
+</section>
