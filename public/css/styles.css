@@ -439,6 +439,54 @@ footer a {
   font-weight: 700;
 }
 
+.auth-required-note {
+  margin: 0 0 0.9rem;
+  padding: 0.5rem 0.7rem;
+  border-left: 4px solid var(--accent);
+  background: #eef7fc;
+  color: #18475f;
+  font-weight: 700;
+}
+
+.password-rules {
+  margin-top: -0.1rem;
+  border: 1px dashed #9eb9c9;
+  background: #f6fbfe;
+  border-radius: 0.35rem;
+  padding: 0.65rem 0.8rem;
+  color: #1f4357;
+}
+
+.password-rules p {
+  margin: 0 0 0.35rem;
+  font-weight: 700;
+}
+
+.password-rules ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.password-rules li {
+  margin-bottom: 0.2rem;
+}
+
+.password-toggle {
+  width: fit-content;
+  border: 1px solid #6d98ad;
+  border-radius: 0.35rem;
+  background: #e7f2f8;
+  color: #16465c;
+  padding: 0.4rem 0.62rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.password-toggle:hover {
+  background: #d4e8f2;
+}
+
 #messages {
   margin: 0 0 1rem;
 }
