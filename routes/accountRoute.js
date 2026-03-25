@@ -7,9 +7,11 @@ const utilities = require("../utilities")
 // Route to build login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
-// Route to build login view
+// Route to build register view
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
+// Route to build successful registration view
+router.post('/register', utilities.handleErrors(accountController.registerAccount))
 
 // Intentional error route for testing error handling middleware
 router.get("/trigger-error", utilities.handleErrors(accountController.triggerIntentionalError));

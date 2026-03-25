@@ -5,6 +5,7 @@
 /* ***********************
  * Require Statements
  *************************/
+const bodyParser = require("body-parser")
 const accountRoute = require("./routes/accountRoute")
 const session = require("express-session")
 const pool = require('./database/')
@@ -30,6 +31,9 @@ const utilities = require("./utilities/")
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
