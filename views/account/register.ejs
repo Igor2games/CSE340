@@ -50,6 +50,7 @@
 					id="account_password"
 					name="account_password"
 					autocomplete="new-password"
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
 					required
 				>
 				<button class="password-toggle" type="button" id="password-toggle" aria-controls="account_password" aria-label="Show password">
