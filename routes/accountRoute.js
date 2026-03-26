@@ -23,4 +23,14 @@ router.post(
 // Intentional error route for testing error handling middleware
 router.get("/trigger-error", utilities.handleErrors(accountController.triggerIntentionalError));
 
+// Process the login attempt
+router.post(
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  (req, res) => {
+    res.status(200).send('login process')
+  }
+)
+
 module.exports = router;

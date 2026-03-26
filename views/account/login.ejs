@@ -3,7 +3,19 @@
 
 	<%- messages() %>
 
+	<% if (errors) { %>
+		<ul class="notice">
+			<% errors.array().forEach(error=> { %>
+				<li>
+					<%= error.msg %>
+				</li>
+				<% }) %>
+		</ul>
+	<% } %>
+
 	<div class="auth-card">
+		<p class="auth-required-note">Both fields are required.</p>
+
 		<form class="auth-form" action="/account/login" method="post">
 			<div class="form-row">
 				<label for="account_email">Email Address</label>
@@ -12,6 +24,7 @@
 					id="account_email"
 					name="account_email"
 					autocomplete="email"
+					value="<%= locals.account_email %>"
 					required
 				>
 			</div>
@@ -23,8 +36,18 @@
 					id="account_password"
 					name="account_password"
 					autocomplete="current-password"
+					pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
 					required
 				>
+			</div>
+
+			<div class="password-rules" aria-live="polite">
+				<p>Password must be at least 12 characters and include:</p>
+				<ul>
+					<li>1 capital letter minimum</li>
+					<li>1 number minimum</li>
+					<li>1 special character minimum</li>
+				</ul>
 			</div>
 
 			<button class="auth-submit" type="submit">Sign In</button>
