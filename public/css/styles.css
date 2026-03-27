@@ -448,6 +448,103 @@ footer a {
   font-weight: 700;
 }
 
+.inventory-admin {
+  width: min(100%, 40rem);
+}
+
+.inventory-admin__intro {
+  margin: 0 0 1rem;
+  color: var(--muted-ink);
+}
+
+.inventory-admin__links {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.inventory-admin__link {
+  display: block;
+  width: fit-content;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.inventory-form-view {
+  width: min(100%, 38rem);
+  margin: 0 auto;
+}
+
+.inventory-form-card {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #1296c4 0%, #0f8bb7 100%);
+  border-radius: 0.5rem;
+  padding: 1.1rem;
+  box-shadow: 0 10px 22px rgba(18, 32, 46, 0.12);
+}
+
+.inventory-form {
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 0.4rem;
+  padding: 0.95rem;
+  display: grid;
+  gap: 0.95rem;
+}
+
+.inventory-form label {
+  color: #062d3f;
+  font-weight: 700;
+}
+
+.inventory-form-hint,
+.inventory-form-required {
+  margin: 0;
+  font-style: italic;
+  font-weight: 700;
+  color: #093349;
+}
+
+.inventory-form-required {
+  margin: 0 0 0.9rem;
+  text-transform: uppercase;
+}
+
+.inventory-form input,
+.inventory-form textarea,
+.inventory-form select {
+  width: 100%;
+  border: 1px solid #7ea2b7;
+  border-radius: 0.25rem;
+  padding: 0.6rem 0.68rem;
+  font: inherit;
+  color: var(--ink);
+  background: #ffffff;
+}
+
+.inventory-form textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.inventory-form input:focus,
+.inventory-form textarea:focus,
+.inventory-form select:focus {
+  border-color: #0c5572;
+  box-shadow: 0 0 0 3px rgba(7, 65, 90, 0.22);
+  outline: none;
+}
+
+.inventory-form input:required:invalid,
+.inventory-form textarea:required:invalid,
+.inventory-form select:required:invalid {
+  border-left: 5px solid #b02525;
+}
+
+.inventory-form input:required:valid,
+.inventory-form textarea:required:valid,
+.inventory-form select:required:valid {
+  border-left: 5px solid #22794c;
+}
+
 .password-rules {
   margin-top: -0.1rem;
   border: 1px dashed #9eb9c9;

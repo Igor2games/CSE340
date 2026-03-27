@@ -1,0 +1,35 @@
+<section class="inventory-form-view" aria-labelledby="add-classification-title">
+  <h1 id="add-classification-title"><%= title %></h1>
+
+  <%- messages() %>
+
+  <% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach((error) => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <div class="inventory-form-card">
+    <p class="inventory-form-required">Field is required.</p>
+
+    <form class="inventory-form" action="/inv/add-classification" method="post">
+      <div class="form-row">
+        <label for="classification_name">Classification Name</label>
+        <p class="inventory-form-hint">Name must be alphabetic characters only.</p>
+        <input
+          type="text"
+          id="classification_name"
+          name="classification_name"
+          pattern="^[A-Za-z]+$"
+          title="Use alphabetic characters only. Spaces and special characters are not allowed."
+          value="<%= locals.classification_name %>"
+          required
+        >
+      </div>
+
+      <button class="auth-submit" type="submit">Add Classification</button>
+    </form>
+  </div>
+</section>
