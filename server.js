@@ -77,7 +77,12 @@ app.use(async (req, res, next) => {
 * Place after all other middleware
 *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
+  let nav = '<ul><li><a href="/" title="Home page">Home</a></li></ul>'
+  try {
+    nav = await utilities.getNav()
+  } catch (navError) {
+    console.error(`Error building nav in error handler: ${navError.message}`)
+  }
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
   const status = err.status || 500
   const message = status === 404

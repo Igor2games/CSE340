@@ -7,21 +7,25 @@ require("dotenv").config()
  * Constructs the nav HTML unordered list
  ************************** */
 Util.getNav = async function (req, res, next) {
-  let data = await invModel.getClassifications()
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
-  data.rows.forEach((row) => {
-    list += "<li>"
-    list +=
-      '<a href="/inv/type/' +
-      row.classification_id +
-      '" title="See our inventory of ' +
-      row.classification_name +
-      ' vehicles">' +
-      row.classification_name +
-      "</a>"
-    list += "</li>"
-  })
+  try {
+    const data = await invModel.getClassifications()
+    data.rows.forEach((row) => {
+      list += "<li>"
+      list +=
+        '<a href="/inv/type/' +
+        row.classification_id +
+        '" title="See our inventory of ' +
+        row.classification_name +
+        ' vehicles">' +
+        row.classification_name +
+        "</a>"
+      list += "</li>"
+    })
+  } catch (error) {
+    console.error("getNav error", error.message)
+  }
   list += "</ul>"
   return list
 }
@@ -146,5 +150,17 @@ Util.checkJWTToken = (req, res, next) => {
   next()
  }
 }
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
 
 module.exports = Util
