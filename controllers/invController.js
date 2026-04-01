@@ -42,10 +42,12 @@ invCont.addClassification = async function (req, res, next) {
 
   if (classificationResult) {
     nav = await utilities.getNav()
+    const classificationSelect = await utilities.buildClassificationList()
     req.flash("success", `The ${classification_name} classification was added successfully.`)
     return res.status(201).render("./inventory/management", {
       title: "Vehicle Management",
       nav,
+      classificationSelect,
       errors: null,
     })
   }
@@ -115,10 +117,12 @@ invCont.addInventory = async function (req, res, next) {
   )
 
   if (invResult) {
+    const classificationSelect = await utilities.buildClassificationList()
     req.flash("success", `The ${inv_make} ${inv_model} was added successfully.`)
     return res.status(201).render("./inventory/management", {
       title: "Vehicle Management",
       nav,
+      classificationSelect,
       errors: null,
     })
   }
@@ -298,6 +302,43 @@ invCont.updateInventory = async function (req, res, next) {
     inv_color,
     classification_id,
   })
+}
+
+/* ***************************
+ *  Build delete confirmation view
+ * ************************** */
+invCont.buildDeleteConfirm = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inv_id, 10)
+  let nav = await utilities.getNav()
+  const itemData = await invModel.getInventoryByInvId(inv_id)
+  const itemName = `${itemData.inv_make} ${itemData.inv_model}`
+
+  return res.render("./inventory/delete-confirm", {
+    title: "Delete " + itemName,
+    nav,
+    errors: null,
+    inv_id: itemData.inv_id,
+    inv_make: itemData.inv_make,
+    inv_model: itemData.inv_model,
+    inv_year: itemData.inv_year,
+    inv_price: itemData.inv_price,
+  })
+}
+
+/* ***************************
+ *  Delete Inventory Item
+ * ************************** */
+invCont.deleteInventoryItem = async function (req, res, next) {
+  const inv_id = parseInt(req.body.inv_id, 10)
+  const deleteResult = await invModel.deleteInventoryItem(inv_id)
+
+  if (deleteResult && deleteResult.rowCount > 0) {
+    req.flash("success", "The inventory item was successfully deleted.")
+    return res.redirect("/inv/")
+  }
+
+  req.flash("error", "Sorry, the delete failed.")
+  return res.redirect(`/inv/delete/${inv_id}`)
 }
 
 module.exports = invCont

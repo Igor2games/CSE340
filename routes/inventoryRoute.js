@@ -50,6 +50,12 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 // Route to build edit inventory view
 router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
 
+// Route to build delete confirmation view
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteConfirm));
+
+// Route to process inventory delete request
+router.post("/delete/", utilities.handleErrors(invController.deleteInventoryItem));
+
 // Intentional error route for testing error handling middleware
 router.get("/trigger-error", utilities.handleErrors(invController.triggerIntentionalError));
 
