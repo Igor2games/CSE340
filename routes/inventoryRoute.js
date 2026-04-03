@@ -6,25 +6,27 @@ const utilities = require("../utilities")
 const invValidate = require("../utilities/inventory-validation")
 
 // Route to build management view
-router.get("/", utilities.handleErrors(invController.buildManagement));
+router.get("/", utilities.checkAccountType, utilities.handleErrors(invController.buildManagement));
 
 // Route to build add classification view
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification));
+router.get("/add-classification", utilities.checkAccountType, utilities.handleErrors(invController.buildAddClassification));
 
 // Route to process add classification form
 router.post(
 	"/add-classification",
+	utilities.checkAccountType,
 	invValidate.classificationRules(),
 	invValidate.checkClassificationData,
 	utilities.handleErrors(invController.addClassification)
 );
 
 // Route to build add inventory view
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
+router.get("/add-inventory", utilities.checkAccountType, utilities.handleErrors(invController.buildAddInventory));
 
 // Route to process add inventory form
 router.post(
 	"/add-inventory",
+	utilities.checkAccountType,
 	invValidate.inventoryRules(),
 	invValidate.checkInventoryData,
 	utilities.handleErrors(invController.addInventory)
@@ -33,6 +35,7 @@ router.post(
 // Route to process update inventory form
 router.post(
 	"/update/",
+	utilities.checkAccountType,
 	invValidate.newInventoryRules(),
 	invValidate.checkUpdateData,
 	utilities.handleErrors(invController.updateInventory)
@@ -45,16 +48,16 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:invId", utilities.handleErrors(invController.buildByInventoryId));
 
 // Route to return inventory items as JSON for management view
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+router.get("/getInventory/:classification_id", utilities.checkAccountType, utilities.handleErrors(invController.getInventoryJSON));
 
 // Route to build edit inventory view
-router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
+router.get("/edit/:inv_id", utilities.checkAccountType, utilities.handleErrors(invController.editInventoryView));
 
 // Route to build delete confirmation view
-router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteConfirm));
+router.get("/delete/:inv_id", utilities.checkAccountType, utilities.handleErrors(invController.buildDeleteConfirm));
 
 // Route to process inventory delete request
-router.post("/delete/", utilities.handleErrors(invController.deleteInventoryItem));
+router.post("/delete/", utilities.checkAccountType, utilities.handleErrors(invController.deleteInventoryItem));
 
 // Intentional error route for testing error handling middleware
 router.get("/trigger-error", utilities.handleErrors(invController.triggerIntentionalError));

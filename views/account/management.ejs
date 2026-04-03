@@ -3,13 +3,13 @@
 
 	<%- messages() %>
 
-	<% if (errors) { %>
-		<ul class="notice">
-			<% errors.array().forEach(error => { %>
-				<li><%= error.msg %></li>
-			<% }) %>
-		</ul>
+	<% if (locals.accountData.account_type === "Client") { %>
+		<h2>Welcome <%= locals.accountData.account_firstname %></h2>
+		<p><a href="/account/update/<%= locals.accountData.account_id %>">Update Account Information</a></p>
+	<% } else { %>
+		<h2>Welcome <%= locals.accountData.account_firstname %></h2>
+		<p><a href="/account/update/<%= locals.accountData.account_id %>">Update Account Information</a></p>
+		<h3>Inventory Management</h3>
+		<p><a href="/inv/" title="Go to Inventory Management">Manage Inventory</a></p>
 	<% } %>
-
-	<p>You're logged in</p>
 </section>

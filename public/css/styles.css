@@ -52,6 +52,12 @@ body {
   font-weight: 700;
 }
 
+#tools {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 nav {
   background: var(--nav-bg);
 }
@@ -370,6 +376,13 @@ footer a {
 .auth-view {
   width: min(100%, 34rem);
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.account-view {
+  width: 100%;
 }
 
 .auth-card {

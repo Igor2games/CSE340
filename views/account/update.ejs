@@ -1,0 +1,101 @@
+<section class="auth-view" aria-labelledby="update-title">
+	<h1 id="update-title"><%= title %></h1>
+
+	<%- messages() %>
+
+	<div class="auth-card">
+		<h2>Account Update</h2>
+		<p class="auth-required-note">All fields are required.</p>
+
+		<% if (locals.updateErrors) { %>
+			<ul class="notice">
+				<% locals.updateErrors.forEach(error => { %>
+					<li><%= error.msg %></li>
+				<% }) %>
+			</ul>
+		<% } %>
+
+		<form class="auth-form" action="/account/update" method="post">
+			<div class="form-row">
+				<label for="account_firstname">First Name</label>
+				<input
+					type="text"
+					id="account_firstname"
+					name="account_firstname"
+					autocomplete="given-name"
+					value="<%= locals.account_firstname %>"
+					required
+				>
+			</div>
+
+			<div class="form-row">
+				<label for="account_lastname">Last Name</label>
+				<input
+					type="text"
+					id="account_lastname"
+					name="account_lastname"
+					autocomplete="family-name"
+					value="<%= locals.account_lastname %>"
+					required
+				>
+			</div>
+
+			<div class="form-row">
+				<label for="account_email">Email Address</label>
+				<input
+					type="email"
+					id="account_email"
+					name="account_email"
+					autocomplete="email"
+					value="<%= locals.account_email %>"
+					required
+				>
+			</div>
+
+			<input type="hidden" name="account_id" value="<%= locals.account_id %>">
+
+			<button class="auth-submit" type="submit">Update Account</button>
+		</form>
+	</div>
+
+	<div class="auth-card">
+		<h2>Change Password</h2>
+		<p class="auth-required-note">Enter a new password below to change your current password.</p>
+
+		<div class="password-rules">
+			<p>Password must be at least 12 characters and include:</p>
+			<ul>
+				<li>1 capital letter minimum</li>
+				<li>1 number minimum</li>
+				<li>1 special character minimum</li>
+			</ul>
+		</div>
+
+		<% if (locals.passwordErrors) { %>
+			<ul class="notice">
+				<% locals.passwordErrors.forEach(error => { %>
+					<li><%= error.msg %></li>
+				<% }) %>
+			</ul>
+		<% } %>
+
+		<form class="auth-form" action="/account/update-password" method="post">
+			<div class="form-row">
+				<label for="account_password">New Password</label>
+				<input
+					type="password"
+					id="account_password"
+					name="account_password"
+					autocomplete="new-password"
+					pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+					title="At least 12 characters, including 1 uppercase, 1 number, and 1 special character"
+					required
+				>
+			</div>
+
+			<input type="hidden" name="account_id" value="<%= locals.account_id %>">
+
+			<button class="auth-submit" type="submit">Change Password</button>
+		</form>
+	</div>
+</section>
