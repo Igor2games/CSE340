@@ -178,4 +178,16 @@ Util.checkAccountType = (req, res, next) => {
   return res.redirect("/account/login")
 }
 
+/* ****************************************
+ * Check Admin only
+ * ************************************ */
+Util.checkAdmin = (req, res, next) => {
+  if (res.locals.loggedin && res.locals.accountData.account_type === "Admin") {
+    next()
+    return
+  }
+  req.flash("notice", "You do not have permission to access that resource.")
+  return res.redirect("/account/login")
+}
+
 module.exports = Util

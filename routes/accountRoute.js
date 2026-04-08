@@ -58,4 +58,16 @@ router.post(
 // Route to process logout
 router.get("/logout", utilities.handleErrors(accountController.accountLogout))
 
+// Route to build manage accounts view (Admin only)
+router.get("/manage-accounts", utilities.checkAdmin, utilities.handleErrors(accountController.buildManageAccounts))
+
+// Route to process account type change (Admin only)
+router.post(
+  "/manage-accounts",
+  utilities.checkAdmin,
+  regValidate.accountTypeRules(),
+  regValidate.checkAccountTypeData,
+  utilities.handleErrors(accountController.changeAccountType)
+)
+
 module.exports = router;

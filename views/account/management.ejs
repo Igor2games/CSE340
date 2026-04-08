@@ -11,5 +11,9 @@
 		<p><a href="/account/update/<%= locals.accountData.account_id %>">Update Account Information</a></p>
 		<h3>Inventory Management</h3>
 		<p><a href="/inv/" title="Go to Inventory Management">Manage Inventory</a></p>
+		<% if (locals.accountData.account_type === "Admin") { %>
+			<h3>Account Administration</h3>
+			<p><a href="/account/manage-accounts" title="Manage user account roles">Manage Accounts</a></p>
+		<% } %>
 	<% } %>
 </section>

@@ -1,0 +1,68 @@
+<section class="account-view" aria-labelledby="manage-accounts-title">
+	<h1 id="manage-accounts-title"><%= title %></h1>
+
+	<%- messages() %>
+
+	<% if (locals.errors && locals.errors.length) { %>
+		<ul class="notice">
+			<% locals.errors.forEach(error => { %>
+				<li><%= error.msg %></li>
+			<% }) %>
+		</ul>
+	<% } %>
+
+	<% if (locals.accounts && locals.accounts.length) { %>
+		<div class="acct-table-wrap">
+			<table class="acct-table">
+				<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Email</th>
+						<th scope="col">Current Role</th>
+						<th scope="col">Change Role</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% accounts.forEach(account => { %>
+						<tr>
+							<td><%= account.account_firstname %> <%= account.account_lastname %></td>
+							<td><%= account.account_email %></td>
+							<td>
+								<span class="acct-badge acct-badge--<%= account.account_type.toLowerCase() %>">
+									<%= account.account_type %>
+								</span>
+							</td>
+							<td>
+								<% if (account.account_type === "Admin" || account.account_id === locals.accountData.account_id) { %>
+									<span class="acct-locked" aria-label="Cannot change role">—</span>
+								<% } else { %>
+									<form class="acct-role-form" action="/account/manage-accounts" method="post">
+										<input type="hidden" name="account_id" value="<%= account.account_id %>">
+										<label for="account_type_<%= account.account_id %>" class="sr-only">
+											New role for <%= account.account_firstname %> <%= account.account_lastname %>
+										</label>
+										<select
+											id="account_type_<%= account.account_id %>"
+											name="account_type"
+											class="acct-role-select"
+											required
+										>
+											<option value="Client"    <%= account.account_type === "Client"   ? "selected" : "" %>>Client</option>
+											<option value="Employee"  <%= account.account_type === "Employee" ? "selected" : "" %>>Employee</option>
+											<option value="Admin">Admin</option>
+										</select>
+										<button class="acct-role-btn" type="submit">Save</button>
+									</form>
+								<% } %>
+							</td>
+						</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</div>
+	<% } else { %>
+		<p class="notice">No accounts found.</p>
+	<% } %>
+
+	<p><a href="/account/" title="Back to Account Management">&larr; Back to Account Management</a></p>
+</section>

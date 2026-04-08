@@ -269,4 +269,42 @@ async function accountLogout(req, res, next) {
   return res.redirect("/")
 }
 
-module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, registerAccount, accountLogin, updateAccount, updatePassword, accountLogout }
+/* ****************************************
+*  Deliver manage accounts view (Admin only)
+* *************************************** */
+async function buildManageAccounts(req, res, next) {
+  let nav = await utilities.getNav()
+  const accounts = await accountModel.getAllAccounts()
+  res.render("account/manage-accounts", {
+    title: "Manage Accounts",
+    nav,
+    errors: null,
+    accounts,
+  })
+}
+
+/* ****************************************
+*  Process account type update (Admin only)
+* *************************************** */
+async function changeAccountType(req, res, next) {
+  let nav = await utilities.getNav()
+  const { account_id, account_type } = req.body
+  const loggedInId = res.locals.accountData.account_id
+
+  // Prevent admin from changing their own type
+  if (parseInt(account_id) === parseInt(loggedInId)) {
+    req.flash("notice", "You cannot change your own account type.")
+    return res.redirect("/account/manage-accounts")
+  }
+
+  const result = await accountModel.updateAccountType(parseInt(account_id), account_type)
+
+  if (result) {
+    req.flash("notice", `Account updated to ${account_type} successfully.`)
+  } else {
+    req.flash("notice", "Update failed. The account may already be an Admin or does not exist.")
+  }
+  return res.redirect("/account/manage-accounts")
+}
+
+module.exports = { buildLogin, buildRegister, buildManagement, buildUpdate, registerAccount, accountLogin, updateAccount, updatePassword, accountLogout, buildManageAccounts, changeAccountType }

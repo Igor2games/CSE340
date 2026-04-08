@@ -385,6 +385,94 @@ footer a {
   width: 100%;
 }
 
+/* ---- Manage Accounts table ---- */
+.acct-table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.acct-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.acct-table thead {
+  background: var(--nav-bg);
+  color: var(--nav-link);
+}
+
+.acct-table th,
+.acct-table td {
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid #d4e3ec;
+  vertical-align: middle;
+}
+
+.acct-table tbody tr:nth-child(even) {
+  background: #f7fbfe;
+}
+
+.acct-badge {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.25rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.acct-badge--client   { background: #e2f4fc; color: #0f5f7a; }
+.acct-badge--employee { background: #e6f4ea; color: #1a5c30; }
+.acct-badge--admin    { background: #fde8e8; color: #8b1a1a; }
+
+.acct-locked {
+  color: var(--muted-ink);
+  font-size: 1.1rem;
+}
+
+.acct-role-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.acct-role-select {
+  border: 1px solid #7ea2b7;
+  border-radius: 0.3rem;
+  padding: 0.38rem 0.55rem;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  cursor: pointer;
+}
+
+.acct-role-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(15, 109, 148, 0.18);
+  outline: none;
+}
+
+.acct-role-btn {
+  border: 0;
+  border-radius: 0.3rem;
+  padding: 0.38rem 0.75rem;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.acct-role-btn:hover {
+  background: #0c5a7a;
+}
+
 .auth-card {
   border: 1px solid var(--line);
   background: linear-gradient(180deg, #ffffff 0%, #f4f9fc 100%);

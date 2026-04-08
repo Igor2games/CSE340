@@ -79,4 +79,32 @@ async function updatePassword (account_password, account_id) {
   }
 }
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword }
+/* *****************************
+* Return all accounts (no passwords)
+* ***************************** */
+async function getAllAccounts () {
+  try {
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname, account_email, account_type FROM account ORDER BY account_lastname ASC, account_firstname ASC'
+    )
+    return result.rows
+  } catch (error) {
+    return null
+  }
+}
+
+/* *****************************
+* Update account type by account_id
+* Will not update if account is already Admin
+* ***************************** */
+async function updateAccountType (account_id, account_type) {
+  try {
+    const sql = `UPDATE account SET account_type = $1 WHERE account_id = $2 AND account_type != 'Admin' RETURNING *`
+    const result = await pool.query(sql, [account_type, account_id])
+    return result.rows[0] || null
+  } catch (error) {
+    return null
+  }
+}
+
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccount, updatePassword, getAllAccounts, updateAccountType }
